@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rétroplanning + Gantt + KPI/SLA — Tournée Régionale VW FS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+          },
+          colors: {
+            // Couleurs de la charte projet
+            cadrage: '#6366f1', // Indigo vif
+            prod: '#10b981',    // Émeraude
+            tech: '#f59e0b',    // Ambre/Orange
+            exec: '#ef4444',    // Rouge Rose
+            bglight: '#f4f7fb',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #f4f7fb; color: #1e293b; }
+    
+    /* Scrollbar personnalisée pour la timeline */
+    .gantt-scroll::-webkit-scrollbar { height: 10px; }
+    .gantt-scroll::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 8px; }
+    .gantt-scroll::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 8px; }
+    .gantt-scroll::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+    /* Utilitaires impression PDF */
+    @media print {
+      body { background-color: white; }
+      .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl { box-shadow: none !important; }
+      .print-border { border: 1px solid #e2e8f0; }
+      .break-inside-avoid { break-inside: avoid; }
+      .gantt-scroll { overflow: visible !important; }
+    }
+    
+    /* Animation douce au survol des lignes */
+    .row-hover:hover { background-color: #f8fafc; transition: all 0.2s ease; }
+  </style>
+</head>
+<body class="antialiased min-h-screen pb-16">
+  
+  <div class="max-w-[1400px] mx-auto p-4 md:p-8 space-y-10">
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="flex flex-col xl:flex-row gap-8 items-stretch justify-between">
+      
+      <!-- Titre principal avec dégradé -->
+      <div class="bg-white rounded-3xl p-8 shadow-xl shadow-slate-200/50 flex-1 border border-slate-100 relative overflow-hidden">
+        <!-- Déco d'arrière-plan -->
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-indigo-50 to-emerald-50 rounded-full blur-3xl opacity-70 pointer-events-none"></div>
+        
+        <div class="relative z-10">
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider">
+              📊 Rétroplanning
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider">
+              🗺️ 4 Conventions
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-indigo-100 text-indigo-800 text-xs font-black uppercase tracking-wider shadow-sm border border-indigo-200">
+              📅 9, 10, 16, 17 JUIN
+            </span>
+          </div>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-600 tracking-tight leading-tight mb-4">
+            Tournée Régionale VW FS
+          </h1>
+          <p class="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl font-medium">
+            Format identique sur 4 sites : <span class="text-slate-900 font-bold bg-indigo-50 px-1 rounded">9h30 accueil</span> • <span class="text-slate-900 font-bold bg-indigo-50 px-1 rounded">10h plénière</span> • <span class="text-slate-900 font-bold bg-indigo-50 px-1 rounded">12h30 déjeuner</span>. 
+            Même qualité de prestation et même équipe technique sur l'ensemble des dates.
+          </p>
+        </div>
+      </div>
+
+      <!-- Repères et Légende -->
+      <div class="w-full xl:w-[450px] flex flex-col gap-4">
+        <div class="bg-white rounded-3xl p-6 shadow-xl shadow-slate-200/50 border border-slate-100 h-full flex flex-col justify-between">
+          
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div>
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Budget cible</div>
+              <div class="font-black text-xl text-slate-800">95–110 K€</div>
+            </div>
+            <div>
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Volumétrie</div>
+              <div class="font-black text-xl text-slate-800">≈ 200 pers.</div>
+            </div>
+            <div>
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Villes</div>
+              <div class="font-bold text-sm text-slate-700">Aix • Lyon • Reims • Le Mans</div>
+            </div>
+            <div>
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Matériel</div>
+              <div class="font-bold text-sm text-slate-700">AV, Régie, 5 Micros</div>
+            </div>
+          </div>
+
+          <!-- Légende Couleurs (très visuelle) -->
+          <div class="pt-4 border-t border-slate-100">
+            <h3 class="text-[10px] font-bold tracking-widest text-slate-400 uppercase mb-3">Légende du planning</h3>
+            <div class="grid grid-cols-2 gap-y-3 gap-x-2">
+              <div class="flex items-center gap-2"><div class="w-4 h-4 rounded-md bg-gradient-to-br from-indigo-400 to-indigo-600 shadow-sm shadow-indigo-200"></div> <span class="text-xs font-bold text-slate-700">1. Cadrage</span></div>
+              <div class="flex items-center gap-2"><div class="w-4 h-4 rounded-md bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-sm shadow-emerald-200"></div> <span class="text-xs font-bold text-slate-700">2. Production</span></div>
+              <div class="flex items-center gap-2"><div class="w-4 h-4 rounded-md bg-gradient-to-br from-amber-400 to-amber-600 shadow-sm shadow-amber-200"></div> <span class="text-xs font-bold text-slate-700">3. Technique</span></div>
+              <div class="flex items-center gap-2"><div class="w-4 h-4 rounded-md bg-gradient-to-br from-rose-400 to-rose-600 shadow-sm shadow-rose-200"></div> <span class="text-xs font-bold text-slate-700">4. Exécution</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+
+    <!-- ==================== GANTT GLOBAL (TOUJOURS VISIBLE) ==================== -->
+    <section class="bg-white border border-slate-200 rounded-3xl shadow-xl shadow-slate-200/40 overflow-hidden break-inside-avoid">
+      <div class="bg-slate-900 px-6 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <h2 class="text-base font-bold text-white flex items-center gap-3">
+          <span class="bg-white/20 p-1.5 rounded-lg">📅</span> Vue Gantt — Globale
+        </h2>
+        <div class="font-mono text-[11px] text-indigo-200 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+          Échelle : FÉV → MAR → AVR → MAI (Événements en JUIN)
+        </div>
+      </div>
+
+      <!-- Container scrollable horizontalement pour forcer l'affichage du Gantt -->
+      <div class="gantt-scroll overflow-x-auto w-full">
+        <!-- Min-width très large pour forcer l'affichage de la grille côte à côte -->
+        <div class="min-w-[1000px] grid grid-cols-[350px_1fr]">
+          
+          <!-- Colonne Gauche : Liste des Tâches -->
+          <div class="border-r border-slate-200 bg-white flex flex-col relative z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
+            <div class="h-12 border-b border-slate-200 flex items-center px-5 font-bold text-[11px] text-slate-400 uppercase tracking-widest bg-slate-50">Phases & Tâches</div>
+            
+            <!-- Items Macros -->
+            <div class="h-[76px] px-5 py-3 border-b border-slate-100 flex flex-col justify-center border-l-4 border-l-indigo-500 bg-indigo-50/30">
+              <div class="flex justify-between items-start">
+                <div class="font-bold text-sm text-indigo-900">1) Cadrage & Sourcing</div>
+                <div class="font-mono text-[10px] font-bold text-indigo-500">Fév → Mar</div>
+              </div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Kick-off • budget • short-list lieux</div>
+            </div>
+
+            <div class="h-[76px] px-5 py-3 border-b border-slate-100 flex flex-col justify-center border-l-4 border-l-emerald-500 bg-emerald-50/30">
+              <div class="flex justify-between items-start">
+                <div class="font-bold text-sm text-emerald-900">2) Prod. & Inscriptions</div>
+                <div class="font-mono text-[10px] font-bold text-emerald-600">Mar → Juin</div>
+              </div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Plateforme • invitations • SMS</div>
+            </div>
+
+            <div class="h-[76px] px-5 py-3 border-b border-slate-100 flex flex-col justify-center border-l-4 border-l-amber-500 bg-amber-50/30">
+              <div class="flex justify-between items-start">
+                <div class="font-bold text-sm text-amber-900">3) Tech. & Réplication</div>
+                <div class="font-mono text-[10px] font-bold text-amber-600">Mar → Mai</div>
+              </div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Plan AV • tests diffusion • logistique</div>
+            </div>
+
+            <div class="h-[76px] px-5 py-3 border-b border-slate-200 flex flex-col justify-center border-l-4 border-l-rose-500 bg-rose-50/30">
+              <div class="flex justify-between items-start">
+                <div class="font-bold text-sm text-rose-900">4) Exécution & Report</div>
+                <div class="font-mono text-[10px] font-bold text-rose-600">Juin</div>
+              </div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Conventions • enquête • bilan</div>
+            </div>
+
+            <!-- Items Détails -->
+            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-indigo-200">
+              <div class="font-bold text-xs text-slate-700">Sélection & contrats lieux</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Comparatif • validation • contrats</div>
+            </div>
+            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-emerald-200">
+              <div class="font-bold text-xs text-slate-700">Plateforme & invitations</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Paramétrage • lancement</div>
+            </div>
+            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-emerald-200">
+              <div class="font-bold text-xs text-slate-700">Restauration & validations</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Cocktail • assises • ajustements</div>
+            </div>
+            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-amber-200">
+              <div class="font-bold text-xs text-slate-700">Plan technique + tests</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">5 micros • écrans • répétitions</div>
+            </div>
+            <div class="h-[64px] px-5 py-2 flex flex-col justify-center row-hover border-l-4 border-l-rose-200">
+              <div class="font-bold text-xs text-slate-700">Finalisation & confirmations</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Plans de salle • badges • SMS</div>
+            </div>
+          </div>
+
+          <!-- Colonne Droite : Grille de temps (Timeline) -->
+          <div class="flex flex-col relative bg-slate-50">
+            <!-- Entête Mois -->
+            <div class="h-12 border-b border-slate-200 grid grid-cols-4 bg-white z-10 shadow-sm relative">
+               <div class="border-r border-slate-200 flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest">Février</div>
+               <div class="border-r border-slate-200 flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest">Mars</div>
+               <div class="border-r border-slate-200 flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest">Avril</div>
+               <div class="flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest bg-rose-50/30">Mai / Juin</div>
+            </div>
+            
+            <!-- Lignes verticales de la grille -->
+            <div class="absolute top-12 bottom-0 left-0 right-0 grid grid-cols-4 pointer-events-none z-0">
+               <div class="border-r border-slate-200/60 border-dashed bg-white/40"></div>
+               <div class="border-r border-slate-200/60 border-dashed bg-slate-50/40"></div>
+               <div class="border-r border-slate-200/60 border-dashed bg-white/40"></div>
+               <div class="bg-rose-50/10"></div>
+            </div>
+
+            <!-- Barres Macro (Epaisses avec dégradés) -->
+            <div class="h-[76px] border-b border-slate-200/50 relative">
+               <div class="absolute top-1/2 -translate-y-1/2 h-10 bg-gradient-to-r from-indigo-500 to-indigo-400 text-white rounded-full flex items-center px-4 text-xs font-bold shadow-lg shadow-indigo-500/30 z-10 border border-indigo-300/50 overflow-hidden" style="left: 2%; width: 42%;">
+                  Cadrage
+               </div>
+            </div>
+            <div class="h-[76px] border-b border-slate-200/50 relative">
+               <div class="absolute top-1/2 -translate-y-1/2 h-10 bg-gradient-to-r from-emerald-500 to-emerald-400 text-white rounded-full flex items-center px-4 text-xs font-bold shadow-lg shadow-emerald-500/30 z-10 border border-emerald-300/50 overflow-hidden" style="left: 26%; width: 72%;">
+                  Production & Inscriptions
+               </div>
+            </div>
+            <div class="h-[76px] border-b border-slate-200/50 relative">
+               <div class="absolute top-1/2 -translate-y-1/2 h-10 bg-gradient-to-r from-amber-500 to-amber-400 text-white rounded-full flex items-center px-4 text-xs font-bold shadow-lg shadow-amber-500/30 z-10 border border-amber-300/50 overflow-hidden" style="left: 26%; width: 73%;">
+                  Technique & Logistique
+               </div>
+            </div>
+            <div class="h-[76px] border-b border-slate-300 relative">
+               <div class="absolute top-1/2 -translate-y-1/2 h-10 bg-gradient-to-r from-rose-500 to-rose-400 text-white rounded-full flex items-center px-4 text-xs font-bold shadow-lg shadow-rose-500/30 z-10 border border-rose-300/50 overflow-hidden" style="left: 90%; width: 9%;">
+                  Exé.
+               </div>
+            </div>
+
+            <!-- Barres Détails (Fines) -->
+            <div class="h-[64px] border-b border-slate-200/50 relative">
+               <div class="absolute top-1/2 -translate-y-1/2 h-7 bg-white text-indigo-700 border border-indigo-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10" style="left: 16%; width: 28%;">Recherche Lieux</div>
+            </div>
+            <div class="h-[64px] border-b border-slate-200/50 relative">
+               <div class="absolute top-1/2 -translate-y-1/2 h-7 bg-white text-emerald-700 border border-emerald-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10" style="left: 30%; width: 36%;">Création Plateforme</div>
+            </div>
+            <div class="h-[64px] border-b border-slate-200/50 relative">
+               <div class="absolute top-1/2 -translate-y-1/2 h-7 bg-white text-emerald-700 border border-emerald-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10" style="left: 56%; width: 40%;">Menu & Ajustements</div>
+            </div>
+            <div class="h-[64px] border-b border-slate-200/50 relative">
+               <div class="absolute top-1/2 -translate-y-1/2 h-7 bg-white text-amber-700 border border-amber-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10" style="left: 30%; width: 64%;">Validation Tech.</div>
+            </div>
+            <div class="h-[64px] relative">
+               <div class="absolute top-1/2 -translate-y-1/2 h-7 bg-white text-rose-700 border border-rose-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10" style="left: 76%; width: 22%;">Badges & SMS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEMAINE ÉVÉNEMENT (Cartes Colorées) -->
+    <section class="break-inside-avoid">
+      <h3 class="text-sm font-black text-slate-800 uppercase tracking-widest mb-5 flex items-center gap-2">
+        🏁 La semaine de l'événement (Dates fixes)
+      </h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        <!-- 8 Juin -->
+        <div class="bg-white border-2 border-slate-100 rounded-2xl p-4 shadow-lg shadow-slate-200/30 relative overflow-hidden flex flex-col justify-between h-32">
+          <div class="absolute top-0 right-0 w-16 h-16 bg-slate-50 rounded-bl-full -z-10"></div>
+          <div>
+            <div class="inline-block bg-slate-100 text-slate-600 font-black text-[10px] uppercase tracking-wider px-2 py-1 rounded mb-2">8 Juin — 14h</div>
+            <div class="font-extrabold text-sm text-slate-800 leading-tight">Montage (Site 1)</div>
+          </div>
+          <div class="text-xs font-medium text-slate-500 mt-2">Logistique + Technique</div>
+        </div>
+        
+        <!-- 9 Juin (Conv 1) -->
+        <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl p-4 shadow-lg shadow-indigo-500/30 text-white relative flex flex-col justify-between h-32 transform hover:-translate-y-1 transition-transform">
+          <div>
+            <div class="inline-block bg-white/20 text-white font-black text-[10px] uppercase tracking-wider px-2 py-1 rounded mb-2 backdrop-blur-sm">9 Juin — 9h</div>
+            <div class="font-extrabold text-sm leading-tight">Convention #1</div>
+          </div>
+          <div class="text-xs font-medium text-indigo-100 mt-2">Plénière à 10h</div>
+        </div>
+
+        <!-- 10 Juin (Conv 2) -->
+        <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl p-4 shadow-lg shadow-indigo-500/30 text-white relative flex flex-col justify-between h-32 transform hover:-translate-y-1 transition-transform">
+          <div>
+            <div class="inline-block bg-white/20 text-white font-black text-[10px] uppercase tracking-wider px-2 py-1 rounded mb-2 backdrop-blur-sm">10 Juin — 9h</div>
+            <div class="font-extrabold text-sm leading-tight">Convention #2</div>
+          </div>
+          <div class="text-xs font-medium text-indigo-100 mt-2">Réplication identique</div>
+        </div>
+
+        <!-- 15 Juin -->
+        <div class="bg-white border-2 border-slate-100 rounded-2xl p-4 shadow-lg shadow-slate-200/30 relative overflow-hidden flex flex-col justify-between h-32">
+          <div class="absolute top-0 right-0 w-16 h-16 bg-slate-50 rounded-bl-full -z-10"></div>
+          <div>
+            <div class="inline-block bg-slate-100 text-slate-600 font-black text-[10px] uppercase tracking-wider px-2 py-1 rounded mb-2">15 Juin — 14h</div>
+            <div class="font-extrabold text-sm text-slate-800 leading-tight">Montage (Site 3)</div>
+          </div>
+          <div class="text-xs font-medium text-slate-500 mt-2">Logistique + Technique</div>
+        </div>
+
+        <!-- 16 Juin (Conv 3) -->
+        <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl p-4 shadow-lg shadow-indigo-500/30 text-white relative flex flex-col justify-between h-32 transform hover:-translate-y-1 transition-transform">
+          <div>
+            <div class="inline-block bg-white/20 text-white font-black text-[10px] uppercase tracking-wider px-2 py-1 rounded mb-2 backdrop-blur-sm">16 Juin — 9h</div>
+            <div class="font-extrabold text-sm leading-tight">Convention #3</div>
+          </div>
+          <div class="text-xs font-medium text-indigo-100 mt-2">Accueil + Signalétique</div>
+        </div>
+
+        <!-- 17 Juin (Conv 4) -->
+        <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl p-4 shadow-lg shadow-indigo-500/30 text-white relative flex flex-col justify-between h-32 transform hover:-translate-y-1 transition-transform">
+          <div>
+            <div class="inline-block bg-white/20 text-white font-black text-[10px] uppercase tracking-wider px-2 py-1 rounded mb-2 backdrop-blur-sm">17 Juin — 9h</div>
+            <div class="font-extrabold text-sm leading-tight">Convention #4</div>
+          </div>
+          <div class="text-xs font-medium text-indigo-100 mt-2">Dernier run + démontage</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== KPI & SLA (TABLEAUX COLORES) ==================== -->
+    <section class="break-inside-avoid pt-4">
+      <div class="mb-6">
+        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Objectifs & Engagements (KPI / SLA)</h2>
+        <p class="text-slate-500 font-medium mt-1">Métriques de pilotage pour garantir le succès des 4 dates.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        
+        <!-- PANNEAU KPI -->
+        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+          <div class="bg-slate-900 px-6 py-4 flex justify-between items-center">
+            <b class="text-xs font-bold tracking-widest text-white uppercase flex items-center gap-2">🎯 KPI (Pilotage)</b>
+          </div>
+
+          <div class="p-6 space-y-6">
+            
+            <!-- Inscriptions -->
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-3 h-3 rounded-md bg-emerald-500 shadow-sm shadow-emerald-200"></span>
+                <h4 class="font-bold text-sm text-slate-800">Inscriptions & Com.</h4>
+              </div>
+              <div class="bg-slate-50 rounded-xl border border-slate-100 overflow-hidden">
+                <table class="w-full text-left">
+                  <tbody class="divide-y divide-slate-100 text-sm">
+                    <tr class="hover:bg-white transition-colors">
+                      <td class="px-4 py-3 font-semibold text-slate-700">Taux de remplissage</td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-emerald-700 font-bold px-2.5 py-1 rounded-lg shadow-sm">≥ 75%</span></td>
+                    </tr>
+                    <tr class="hover:bg-white transition-colors">
+                      <td class="px-4 py-3 font-semibold text-slate-700">No-show max</td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-bold px-2.5 py-1 rounded-lg shadow-sm">≤ 15%</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Technique -->
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-3 h-3 rounded-md bg-amber-500 shadow-sm shadow-amber-200"></span>
+                <h4 class="font-bold text-sm text-slate-800">Technique Jour J</h4>
+              </div>
+              <div class="bg-slate-50 rounded-xl border border-slate-100 overflow-hidden">
+                <table class="w-full text-left">
+                  <tbody class="divide-y divide-slate-100 text-sm">
+                    <tr class="hover:bg-white transition-colors">
+                      <td class="px-4 py-3 font-semibold text-slate-700">Dispo AV Plénière</td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-amber-200 text-amber-700 font-bold px-2.5 py-1 rounded-lg shadow-sm">≥ 99,0%</span></td>
+                    </tr>
+                    <tr class="hover:bg-white transition-colors">
+                      <td class="px-4 py-3 font-semibold text-slate-700">Conformité pack (5 micros)</td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-bold px-2.5 py-1 rounded-lg shadow-sm">100%</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PANNEAU SLA -->
+        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+          <div class="bg-slate-900 px-6 py-4 flex justify-between items-center">
+            <b class="text-xs font-bold tracking-widest text-white uppercase flex items-center gap-2">🤝 SLA (Engagements)</b>
+          </div>
+
+          <div class="p-6 space-y-6">
+            
+            <!-- Support -->
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-3 h-3 rounded-md bg-indigo-500 shadow-sm shadow-indigo-200"></span>
+                <h4 class="font-bold text-sm text-slate-800">Gouvernance & Support</h4>
+              </div>
+              <div class="bg-slate-50 rounded-xl border border-slate-100 overflow-hidden">
+                <table class="w-full text-left">
+                  <tbody class="divide-y divide-slate-100 text-sm">
+                    <tr class="hover:bg-white transition-colors">
+                      <td class="px-4 py-3 font-semibold text-slate-700">Délai réponse participants</td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-indigo-700 font-bold px-2.5 py-1 rounded-lg shadow-sm">≤ 24h</span></td>
+                    </tr>
+                    <tr class="hover:bg-white transition-colors">
+                      <td class="px-4 py-3 font-semibold text-slate-700">Envoi CR de COPIL</td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-bold px-2.5 py-1 rounded-lg shadow-sm">≤ 48h</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Incidents -->
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-3 h-3 rounded-md bg-rose-500 shadow-sm shadow-rose-200"></span>
+                <h4 class="font-bold text-sm text-slate-800">Gestion des Incidents (Sur site)</h4>
+              </div>
+              <div class="bg-slate-50 rounded-xl border border-slate-100 overflow-hidden">
+                <table class="w-full text-left">
+                  <tbody class="divide-y divide-slate-100 text-sm">
+                    <tr class="hover:bg-white transition-colors">
+                      <td class="px-4 py-3 font-semibold text-slate-700">Prise en charge panne AV</td>
+                      <td class="px-4 py-3 text-right"><span class="bg-rose-50 border border-rose-200 text-rose-700 font-bold px-2.5 py-1 rounded-lg shadow-sm">≤ 2 min</span></td>
+                    </tr>
+                    <tr class="hover:bg-white transition-colors">
+                      <td class="px-4 py-3 font-semibold text-slate-700">Rétablissement AV critique</td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-bold px-2.5 py-1 rounded-lg shadow-sm">≤ 10 min</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pt-8 mt-4 border-t border-slate-200 flex flex-col md:flex-row justify-center items-center gap-4 text-sm font-medium text-slate-400">
+      <div>© Document de pilotage projet interactif</div>
+    </footer>
+
+  </div>
+</body>
+</html>
