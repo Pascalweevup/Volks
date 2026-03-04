@@ -15,10 +15,10 @@
             mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
           },
           colors: {
-            cadrage: '#6366f1', // Indigo vif
-            prod: '#10b981',    // Émeraude
-            tech: '#f59e0b',    // Ambre/Orange
-            exec: '#ef4444',    // Rouge Rose
+            cadrage: '#6366f1', // Indigo
+            prod: '#10b981',    // Emeraude
+            tech: '#f59e0b',    // Ambre
+            exec: '#ef4444',    // Rouge
           }
         }
       }
@@ -125,132 +125,198 @@
         </div>
       </div>
 
-      <div class="gantt-scroll overflow-x-auto w-full">
-        <div class="min-w-[1000px] grid grid-cols-[400px_1fr]">
+      <div class="gantt-scroll overflow-x-auto w-full pb-2">
+        <!-- min-width important pour éviter la compression et laisser l'espace au texte qui déborde à droite -->
+        <div class="min-w-[1150px] flex flex-col pr-8">
           
-          <div class="border-r border-slate-200 bg-white flex flex-col relative z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
-            <!-- Macros -->
-            <div class="h-[76px] px-5 py-3 border-b border-slate-100 flex flex-col justify-center border-l-4 border-l-indigo-500 bg-indigo-50/30">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-[13px] text-indigo-900">1) Cadrage & Sourcing (macro)</div>
-                <div class="font-mono text-[10px] font-bold text-indigo-500">Fév → début Mar</div>
-              </div>
-              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Kick-off • périmètre • budget • short-list lieux (4 zones)</div>
+          <!-- Ligne d'En-tête (Grille parfaite) -->
+          <div class="grid grid-cols-[420px_1fr] bg-slate-50 border-b border-slate-200 relative z-20">
+            <div class="flex items-center px-5 py-3 font-bold text-[11px] text-slate-400 uppercase tracking-widest border-r border-slate-200">
+              Phases & Tâches
             </div>
-
-            <div class="h-[76px] px-5 py-3 border-b border-slate-100 flex flex-col justify-center border-l-4 border-l-emerald-500 bg-emerald-50/30">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-[13px] text-emerald-900">2) Production & Inscriptions (macro)</div>
-                <div class="font-mono text-[10px] font-bold text-emerald-600">Mar → début Juin</div>
-              </div>
-              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Key visual • plateforme • invitations • suivi quotas • confirmations • SMS</div>
-            </div>
-
-            <div class="h-[76px] px-5 py-3 border-b border-slate-100 flex flex-col justify-center border-l-4 border-l-amber-500 bg-amber-50/30">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-[13px] text-amber-900">3) Technique & Réplication (macro)</div>
-                <div class="font-mono text-[10px] font-bold text-amber-600">Mar → fin Mai</div>
-              </div>
-              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Plan AV identique • régie • tests diffusion • logistique inter-sites</div>
-            </div>
-
-            <div class="h-[76px] px-5 py-3 border-b border-slate-200 flex flex-col justify-center border-l-4 border-l-rose-500 bg-rose-50/30">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-[13px] text-rose-900">4) Exécution & Reporting (macro)</div>
-                <div class="font-mono text-[10px] font-bold text-rose-600">Juin → J+12</div>
-              </div>
-              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Montages • 4 conventions • support live • enquête satisfaction • bilan</div>
-            </div>
-
-            <!-- Détails -->
-            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-indigo-200">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">Détail — Sélection & contractualisation lieux</div>
-                <div class="font-mono text-[9px] text-slate-400">fin Fév → Mar</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">Comparatif • validation • options/contrats • hôtels directeurs</div>
-            </div>
-            
-            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-emerald-200">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">Détail — Plateforme & invitations</div>
-                <div class="font-mono text-[9px] text-slate-400">Mar → Avr</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">Paramétrage 4 lieux • quotas • tests • lancement & relances</div>
-            </div>
-
-            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-emerald-200">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">Détail — Restauration & validations</div>
-                <div class="font-mono text-[9px] text-slate-400">Avr → Mai</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">Cocktail déj • ateliers/barbecue • assises • ajustements</div>
-            </div>
-
-            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-amber-200">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">Détail — Plan technique + tests</div>
-                <div class="font-mono text-[9px] text-slate-400">Mar → Mai</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">5 micros-cravates • écrans • retour • répétitions / check</div>
-            </div>
-
-            <div class="h-[64px] px-5 py-2 flex flex-col justify-center row-hover border-l-4 border-l-rose-200">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">Détail — Finalisation & confirmations</div>
-                <div class="font-mono text-[9px] text-slate-400">Mai → début Juin</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">Plans de salle • badges • brief équipes • SMS rappel</div>
-            </div>
-          </div>
-
-          <!-- Grille timeline -->
-          <div class="flex flex-col relative bg-slate-50">
-            <div class="h-12 border-b border-slate-200 grid grid-cols-4 bg-white z-10 shadow-sm relative">
-               <div class="border-r border-slate-200 flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest">FÉV</div>
-               <div class="border-r border-slate-200 flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest">MAR</div>
-               <div class="border-r border-slate-200 flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest">AVR</div>
+            <!-- 4 colonnes temporelles égales -->
+            <div class="grid grid-cols-4">
+               <div class="flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest border-r border-slate-200">FÉV</div>
+               <div class="flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest border-r border-slate-200">MAR</div>
+               <div class="flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest border-r border-slate-200">AVR</div>
                <div class="flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest">MAI / JUIN</div>
             </div>
-            
-            <div class="absolute top-12 bottom-0 left-0 right-0 grid grid-cols-4 pointer-events-none z-0">
-               <div class="border-r border-slate-200/60 border-dashed bg-white/40"></div>
-               <div class="border-r border-slate-200/60 border-dashed bg-slate-50/40"></div>
-               <div class="border-r border-slate-200/60 border-dashed bg-white/40"></div>
-               <div></div>
-            </div>
+          </div>
 
-            <!-- Barres Macro -->
-            <div class="h-[76px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-8 bg-gradient-to-r from-indigo-500 to-indigo-400 text-white rounded-full flex items-center px-4 text-xs font-bold shadow-md z-10 overflow-hidden" style="left: 2%; width: 42%;">Cadrage & Sourcing</div>
+          <!-- MACRO 1 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3.5 border-r border-slate-200 border-l-4 border-l-indigo-500 bg-indigo-50/40 group-hover:bg-indigo-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-[13px] text-indigo-900 leading-tight">1) Cadrage & Sourcing (macro)</div>
+                <div class="font-mono text-[10px] font-bold text-indigo-600 whitespace-nowrap pt-0.5">Fév → début Mar</div>
+              </div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1.5 leading-relaxed">Kick-off • périmètre • budget • short-list lieux (4 zones)</div>
             </div>
-            <div class="h-[76px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-8 bg-gradient-to-r from-emerald-500 to-emerald-400 text-white rounded-full flex items-center px-4 text-xs font-bold shadow-md z-10 overflow-hidden" style="left: 26%; width: 72%;">Production & Inscriptions</div>
-            </div>
-            <div class="h-[76px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-8 bg-gradient-to-r from-amber-500 to-amber-400 text-white rounded-full flex items-center px-4 text-xs font-bold shadow-md z-10 overflow-hidden" style="left: 26%; width: 73%;">Technique & Réplication</div>
-            </div>
-            <div class="h-[76px] border-b border-slate-300 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-8 bg-gradient-to-r from-rose-500 to-rose-400 text-white rounded-full flex items-center px-3 text-[11px] font-bold shadow-md z-10 overflow-hidden" style="left: 92%; width: 7%;">Exé</div>
-            </div>
-
-            <!-- Barres Détails -->
-            <div class="h-[64px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-indigo-700 border border-indigo-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 16%; width: 28%;">Sélection & contrats lieux</div>
-            </div>
-            <div class="h-[64px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-emerald-700 border border-emerald-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 30%; width: 36%;">Plateforme & invitations</div>
-            </div>
-            <div class="h-[64px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-emerald-700 border border-emerald-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 56%; width: 40%;">Restauration & validations</div>
-            </div>
-            <div class="h-[64px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-amber-700 border border-amber-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 30%; width: 64%;">Plan technique + tests</div>
-            </div>
-            <div class="h-[64px] relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-rose-700 border border-rose-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 76%; width: 22%;">Finalisation & confirmations</div>
+            <div class="relative w-full h-full flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <!-- Lignes de fond synchronisées -->
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              <!-- Barre -->
+              <div class="absolute z-10 flex items-center" style="left: 5%; width: 25%;">
+                <div class="w-full h-8 bg-gradient-to-r from-indigo-500 to-indigo-400 rounded-full shadow-md flex items-center px-4">
+                  <span class="text-xs font-bold text-white whitespace-nowrap">Cadrage & Sourcing</span>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- MACRO 2 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3.5 border-r border-slate-200 border-l-4 border-l-emerald-500 bg-emerald-50/40 group-hover:bg-emerald-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-[13px] text-emerald-900 leading-tight">2) Production & Inscriptions (macro)</div>
+                <div class="font-mono text-[10px] font-bold text-emerald-600 whitespace-nowrap pt-0.5">Mar → début Juin</div>
+              </div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1.5 leading-relaxed">Key visual • plateforme • invitations • suivi quotas • confirmations • SMS</div>
+            </div>
+            <div class="relative w-full h-full flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              <div class="absolute z-10 flex items-center" style="left: 25%; width: 60%;">
+                <div class="w-full h-8 bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full shadow-md flex items-center px-4">
+                  <span class="text-xs font-bold text-white whitespace-nowrap">Production & Inscriptions</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MACRO 3 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3.5 border-r border-slate-200 border-l-4 border-l-amber-500 bg-amber-50/40 group-hover:bg-amber-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-[13px] text-amber-900 leading-tight">3) Technique & Réplication (macro)</div>
+                <div class="font-mono text-[10px] font-bold text-amber-600 whitespace-nowrap pt-0.5">Mar → fin Mai</div>
+              </div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1.5 leading-relaxed">Plan AV identique • régie • tests diffusion • logistique inter-sites</div>
+            </div>
+            <div class="relative w-full h-full flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              <div class="absolute z-10 flex items-center" style="left: 25%; width: 55%;">
+                <div class="w-full h-8 bg-gradient-to-r from-amber-500 to-amber-400 rounded-full shadow-md flex items-center px-4">
+                  <span class="text-xs font-bold text-white whitespace-nowrap">Technique & Réplication</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MACRO 4 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-200 group">
+            <div class="px-5 py-3.5 border-r border-slate-200 border-l-4 border-l-rose-500 bg-rose-50/40 group-hover:bg-rose-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-[13px] text-rose-900 leading-tight">4) Exécution & Reporting (macro)</div>
+                <div class="font-mono text-[10px] font-bold text-rose-600 whitespace-nowrap pt-0.5">Juin → J+12</div>
+              </div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1.5 leading-relaxed">Montages • 4 conventions • support live • enquête satisfaction • bilan</div>
+            </div>
+            <div class="relative w-full h-full flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              <div class="absolute z-10 flex items-center" style="left: 85%; width: 10%;">
+                <div class="w-full h-8 bg-gradient-to-r from-rose-500 to-rose-400 rounded-full shadow-md flex items-center justify-center">
+                  <span class="text-[11px] font-bold text-white whitespace-nowrap">Exé.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DETAIL 1 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-indigo-200 bg-white group-hover:bg-slate-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">Détail — Sélection & contractualisation lieux</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">fin Fév → Mar</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">Comparatif • validation • options/contrats • hôtels directeurs</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <!-- Barre avec texte positionné A L'EXTERIEUR pour ne pas être coupé -->
+              <div class="absolute z-10 flex items-center" style="left: 15%; width: 25%;">
+                <div class="w-full h-5 bg-indigo-100 border border-indigo-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">Sélection & contrats lieux</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- DETAIL 2 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-emerald-200 bg-white group-hover:bg-slate-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">Détail — Plateforme & invitations</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">Mar → Avr</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">Paramétrage 4 lieux • quotas • tests • lancement & relances</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 25%; width: 40%;">
+                <div class="w-full h-5 bg-emerald-100 border border-emerald-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">Plateforme & invitations</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DETAIL 3 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-emerald-200 bg-white group-hover:bg-slate-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">Détail — Restauration & validations</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">Avr → Mai</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">Cocktail déj • ateliers/barbecue • assises • ajustements</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 50%; width: 30%;">
+                <div class="w-full h-5 bg-emerald-100 border border-emerald-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">Restauration & validations</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DETAIL 4 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-amber-200 bg-white group-hover:bg-slate-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">Détail — Plan technique + tests</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">Mar → Mai</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">5 micros-cravates • écrans • retour • répétitions / check</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 25%; width: 55%;">
+                <div class="w-full h-5 bg-amber-100 border border-amber-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">Plan technique + tests</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DETAIL 5 -->
+          <div class="grid grid-cols-[420px_1fr] group border-b border-slate-200">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-rose-200 bg-white group-hover:bg-slate-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">Détail — Finalisation & confirmations</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">Mai → début Juin</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">Plans de salle • badges • brief équipes • SMS rappel</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 75%; width: 10%;">
+                <div class="w-full h-5 bg-rose-100 border border-rose-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">Finalisation & confirmations</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
       
@@ -266,6 +332,7 @@
       </h3>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        <!-- Reste identique (Parfaitement lisible) -->
         <div class="bg-white border-2 border-slate-100 rounded-2xl p-4 shadow-lg shadow-slate-200/30 relative overflow-hidden flex flex-col justify-between h-[140px]">
           <div class="absolute top-0 right-0 w-16 h-16 bg-slate-50 rounded-bl-full -z-10"></div>
           <div>
@@ -329,130 +396,194 @@
         </div>
       </div>
 
-      <div class="gantt-scroll overflow-x-auto w-full">
-        <div class="min-w-[1000px] grid grid-cols-[400px_1fr]">
+      <div class="gantt-scroll overflow-x-auto w-full pb-2">
+        <div class="min-w-[1150px] flex flex-col pr-8">
           
-          <!-- Colonne Tâches (Les 8 items + Macro) -->
-          <div class="border-r border-slate-200 bg-white flex flex-col relative z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
-            <div class="h-[76px] px-5 py-3 border-b border-slate-100 flex flex-col justify-center border-l-4 border-l-emerald-500 bg-emerald-50/30">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-[13px] text-emerald-900">PROD (macro) — Production & Inscriptions</div>
-                <div class="font-mono text-[10px] font-bold text-emerald-600">Mar → début Juin</div>
-              </div>
-              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Plateforme • invitations • suivi participants • contenus • confirmations • SMS</div>
+          <!-- Ligne d'En-tête -->
+          <div class="grid grid-cols-[420px_1fr] bg-slate-50 border-b border-slate-200 relative z-20">
+            <div class="flex items-center px-5 py-3 font-bold text-[11px] text-slate-400 uppercase tracking-widest border-r border-slate-200">
+              Détail des tâches
             </div>
-
-            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-emerald-200">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">1. Key visual & templates</div>
-                <div class="font-mono text-[9px] text-slate-400">début Mar</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">Identité tournée • templates email • gabarits badges • écrans</div>
-            </div>
-            
-            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-emerald-200">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">2. Plateforme d’inscription</div>
-                <div class="font-mono text-[9px] text-slate-400">Mar</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">Paramétrage 4 lieux • quotas • emails auto • tracking • tests</div>
-            </div>
-
-            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-emerald-200">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">3. Save the date + ouverture inscriptions</div>
-                <div class="font-mono text-[9px] text-slate-400">fin Mar</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">Lancement “le plus tôt possible” (maximiser remplissage)</div>
-            </div>
-
-            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-emerald-200">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">4. Invitations officielles + relances</div>
-                <div class="font-mono text-[9px] text-slate-400">Avr</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">Relances ciblées • pilotage quotas • confirmations + changements</div>
-            </div>
-
-            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-amber-200 bg-amber-50/20">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">5. Contenus plénière (support slides — option)</div>
-                <div class="font-mono text-[9px] text-slate-400">Avr → Mai</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">Mise en page / harmonisation • exports • préparation diffusion</div>
-            </div>
-
-            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-emerald-200">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">6. Listes / badges / plan de salle</div>
-                <div class="font-mono text-[9px] text-slate-400">Mai</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">Listes consolidées • badges • check-in • plan d’accueil</div>
-            </div>
-
-            <div class="h-[64px] px-5 py-2 border-b border-slate-100 flex flex-col justify-center row-hover border-l-4 border-l-emerald-200">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">7. SMS de rappel</div>
-                <div class="font-mono text-[9px] text-slate-400">J-2 / J-1</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">SMS avant chaque réunion (confirmation du RDV)</div>
-            </div>
-
-            <div class="h-[64px] px-5 py-2 flex flex-col justify-center row-hover border-l-4 border-l-rose-200 bg-rose-50/20">
-              <div class="flex justify-between items-start">
-                <div class="font-bold text-xs text-slate-800">8. Enquête satisfaction & reporting</div>
-                <div class="font-mono text-[9px] text-slate-400">J+1 → J+12</div>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 truncate">Envoi enquête • analyse • bilan consolidé tournée</div>
-            </div>
-          </div>
-
-          <!-- Grille timeline -->
-          <div class="flex flex-col relative bg-slate-50">
-            <div class="h-12 border-b border-slate-200 grid grid-cols-4 bg-white z-10 shadow-sm relative">
-               <div class="border-r border-slate-200 flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest">MAR</div>
-               <div class="border-r border-slate-200 flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest">AVR</div>
-               <div class="border-r border-slate-200 flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest">MAI</div>
+            <div class="grid grid-cols-4">
+               <div class="flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest border-r border-slate-200">MAR</div>
+               <div class="flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest border-r border-slate-200">AVR</div>
+               <div class="flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest border-r border-slate-200">MAI</div>
                <div class="flex items-center justify-center font-black text-xs text-slate-800 uppercase tracking-widest">début JUIN</div>
             </div>
-            
-            <div class="absolute top-12 bottom-0 left-0 right-0 grid grid-cols-4 pointer-events-none z-0">
-               <div class="border-r border-slate-200/60 border-dashed bg-white/40"></div>
-               <div class="border-r border-slate-200/60 border-dashed bg-slate-50/40"></div>
-               <div class="border-r border-slate-200/60 border-dashed bg-white/40"></div>
-               <div></div>
-            </div>
+          </div>
 
-            <!-- Barres -->
-            <div class="h-[76px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-8 bg-gradient-to-r from-emerald-500 to-emerald-400 text-white rounded-full flex items-center px-4 text-xs font-bold shadow-md z-10 truncate" style="left: 2%; width: 96%;">PROD (macro) <span class="font-normal opacity-75 ml-2">Mar→début Juin</span></div>
+          <!-- PROD MACRO -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3.5 border-r border-slate-200 border-l-4 border-l-emerald-500 bg-emerald-50/40 group-hover:bg-emerald-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-[13px] text-emerald-900 leading-tight">PROD (macro) — Production & Inscriptions</div>
+                <div class="font-mono text-[10px] font-bold text-emerald-600 whitespace-nowrap pt-0.5">Mar → début Juin</div>
+              </div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1.5 leading-relaxed">Plateforme • invitations • suivi participants • contenus • confirmations • SMS</div>
             </div>
-
-            <div class="h-[64px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-emerald-700 border border-emerald-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 4%; width: 18%;">Key visual & templates</div>
-            </div>
-            <div class="h-[64px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-emerald-700 border border-emerald-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 8%; width: 24%;">Plateforme d’inscription</div>
-            </div>
-            <div class="h-[64px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-emerald-700 border border-emerald-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 20%; width: 10%;">Save the date</div>
-            </div>
-            <div class="h-[64px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-emerald-700 border border-emerald-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 26%; width: 22%;">Invitations & relances</div>
-            </div>
-            <div class="h-[64px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-amber-700 border border-amber-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 26%; width: 44%;">Support slides (option)</div>
-            </div>
-            <div class="h-[64px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-emerald-700 border border-emerald-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 52%; width: 22%;">Listes / badges / plan salle</div>
-            </div>
-            <div class="h-[64px] border-b border-slate-200/50 relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-emerald-700 border border-emerald-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 78%; width: 18%;">SMS rappel</div>
-            </div>
-            <div class="h-[64px] relative">
-               <div class="absolute top-1/2 -translate-y-1/2 h-6 bg-white text-rose-700 border border-rose-200 rounded-full flex items-center px-3 text-[11px] font-bold shadow-sm z-10 truncate" style="left: 84%; width: 14%;">Satisfaction & reporting</div>
+            <div class="relative w-full h-full flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 5%; width: 80%;">
+                <div class="w-full h-8 bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full shadow-md flex items-center px-4">
+                  <span class="text-xs font-bold text-white whitespace-nowrap">PROD (macro)</span>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Détail 1 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-emerald-200 bg-white group-hover:bg-slate-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">1. Key visual & templates</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">début Mar</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">Identité tournée • templates email • gabarits badges • écrans</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 5%; width: 10%;">
+                <div class="w-full h-5 bg-emerald-100 border border-emerald-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">Key visual & templates</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Détail 2 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-emerald-200 bg-white group-hover:bg-slate-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">2. Plateforme d’inscription</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">Mar</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">Paramétrage 4 lieux • quotas • emails auto • tracking • tests</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 5%; width: 20%;">
+                <div class="w-full h-5 bg-emerald-100 border border-emerald-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">Plateforme d’inscription</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Détail 3 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-emerald-200 bg-white group-hover:bg-slate-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">3. Save the date + ouverture inscriptions</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">fin Mar</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">Lancement “le plus tôt possible” (maximiser remplissage)</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 20%; width: 5%;">
+                <div class="w-full h-5 bg-emerald-100 border border-emerald-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">Save the date</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Détail 4 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-emerald-200 bg-white group-hover:bg-slate-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">4. Invitations officielles + relances</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">Avr</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">Relances ciblées • pilotage quotas • confirmations + changements</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 25%; width: 25%;">
+                <div class="w-full h-5 bg-emerald-100 border border-emerald-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">Invitations & relances</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Détail 5 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-amber-200 bg-amber-50/20 group-hover:bg-amber-50/40 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">5. Contenus plénière (support slides — option)</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">Avr → Mai</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">Mise en page / harmonisation • exports • préparation diffusion</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 25%; width: 45%;">
+                <div class="w-full h-5 bg-amber-100 border border-amber-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">Support slides (option)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Détail 6 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-emerald-200 bg-white group-hover:bg-slate-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">6. Listes / badges / plan de salle</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">Mai</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">Listes consolidées • badges • check-in • plan d’accueil</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 50%; width: 20%;">
+                <div class="w-full h-5 bg-emerald-100 border border-emerald-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">Listes / badges / plan salle</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Détail 7 -->
+          <div class="grid grid-cols-[420px_1fr] border-b border-slate-100 group">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-emerald-200 bg-white group-hover:bg-slate-50 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">7. SMS de rappel</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">J-2 / J-1</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">SMS avant chaque réunion (confirmation du RDV)</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 70%; width: 5%;">
+                <div class="w-full h-5 bg-emerald-100 border border-emerald-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">SMS rappel</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Détail 8 -->
+          <div class="grid grid-cols-[420px_1fr] group border-b border-slate-200">
+            <div class="px-5 py-3 border-r border-slate-200 border-l-4 border-l-rose-200 bg-rose-50/20 group-hover:bg-rose-50/40 flex flex-col justify-center transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <div class="font-bold text-xs text-slate-800 leading-tight">8. Enquête satisfaction & reporting</div>
+                <div class="font-mono text-[9px] text-slate-400 whitespace-nowrap pt-0.5">J+1 → J+12</div>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 leading-relaxed">Envoi enquête • analyse • bilan consolidé tournée</div>
+            </div>
+            <div class="relative w-full h-full min-h-[50px] flex items-center bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div class="absolute inset-0 grid grid-cols-4 pointer-events-none z-0"><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div class="border-r border-slate-200/60 border-dashed"></div><div></div></div>
+              
+              <div class="absolute z-10 flex items-center" style="left: 78%; width: 15%;">
+                <div class="w-full h-5 bg-rose-100 border border-rose-300 rounded-full shadow-sm"></div>
+                <span class="absolute left-full ml-2.5 text-[11px] font-bold text-slate-700 whitespace-nowrap">Satisfaction & reporting</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
       
@@ -477,7 +608,7 @@
         <!-- PANNEAU KPI -->
         <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
           <div class="bg-slate-900 px-6 py-4 flex justify-between items-center">
-            <b class="text-sm font-bold tracking-widest text-white uppercase flex items-center gap-2">KPI (résultats mesurés)</b>
+            <b class="text-sm font-bold tracking-widest text-white uppercase flex items-center gap-2">KPI</b>
             <span class="text-xs font-mono text-slate-400">tableau de pilotage</span>
           </div>
 
@@ -498,17 +629,17 @@
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 font-semibold text-slate-800">Taux de remplissage / site</td>
                       <td class="px-4 py-3 text-xs text-slate-500">Inscrits ÷ capacité cible</td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-emerald-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">≥ 75%</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-emerald-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">≥ 75%</span></td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 font-semibold text-slate-800">No-show</td>
                       <td class="px-4 py-3 text-xs text-slate-500">Absents ÷ inscrits</td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">≤ 15%</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">≤ 15%</span></td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 font-semibold text-slate-800">Délivrabilité email/SMS</td>
                       <td class="px-4 py-3 text-xs text-slate-500">Délivrés ÷ envoyés</td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-emerald-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">≥ 97%</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-emerald-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">≥ 97%</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -530,17 +661,17 @@
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 font-semibold text-slate-800 w-1/3">Respect timing</td>
                       <td class="px-4 py-3 text-xs text-slate-500">Démarrage 10h / déjeuner 12h30 / fin</td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">≥ 95%</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">≥ 95%</span></td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 font-semibold text-slate-800">Check-in avant 10h</td>
                       <td class="px-4 py-3 text-xs text-slate-500">Participants enregistrés avant 10h</td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">≥ 85%</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">≥ 85%</span></td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 font-semibold text-slate-800">Incidents opérationnels</td>
                       <td class="px-4 py-3 text-xs text-slate-500">Accueil / flux / signalétique (majeurs)</td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">≤ 1 / site</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">≤ 1 / site</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -559,17 +690,17 @@
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 font-semibold text-slate-800 w-1/3">Disponibilité AV plénière</td>
                       <td class="px-4 py-3 text-xs text-slate-500">Temps OK ÷ temps total plénière</td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-amber-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">≥ 99,0%</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-amber-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">≥ 99,0%</span></td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 font-semibold text-slate-800">MTTR incident critique</td>
                       <td class="px-4 py-3 text-xs text-slate-500">Temps moyen de rétablissement</td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">≤ 10 min</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">≤ 10 min</span></td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 font-semibold text-slate-800">Conformité pack technique</td>
                       <td class="px-4 py-3 text-xs text-slate-500">Micros-cravate x5 • écrans • retour • régie</td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">100%</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">100%</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -588,17 +719,17 @@
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 font-semibold text-slate-800 w-1/3">Satisfaction globale</td>
                       <td class="px-4 py-3 text-xs text-slate-500">Note moyenne enquête post-event</td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">≥ 4,0/5</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">≥ 4,0/5</span></td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 font-semibold text-slate-800">Respect budget</td>
                       <td class="px-4 py-3 text-xs text-slate-500">Écart réel vs validé (hors demandes nouvelles)</td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">± 5%</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">± 5%</span></td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 font-semibold text-slate-800">Délai reporting</td>
                       <td class="px-4 py-3 text-xs text-slate-500">Bilan consolidé + recommandations</td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">J+12</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">J+12</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -632,13 +763,13 @@
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3"><b class="font-semibold text-slate-800">COPIL</b><div class="text-xs text-slate-500 mt-1">suivi planning, budget, risques, arbitrages</div></td>
                       <td class="px-4 py-3 text-right">
-                        <span class="inline-block bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm mb-1.5">hebdo (J-8 → J-3)</span><br>
-                        <span class="inline-block bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">bi-hebdo (J-3 → J)</span>
+                        <span class="inline-block bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm mb-1.5 whitespace-nowrap">hebdo (J-8 → J-3)</span><br>
+                        <span class="inline-block bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">bi-hebdo (J-3 → J)</span>
                       </td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3"><b class="font-semibold text-slate-800">Compte-rendu</b><div class="text-xs text-slate-500 mt-1">diffusion CR + plan d’actions</div></td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">≤ 48h</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">≤ 48h</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -656,18 +787,18 @@
                   <tbody class="divide-y divide-slate-100 text-sm">
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 w-1/2"><b class="font-semibold text-slate-800">Disponibilité plateforme</b><div class="text-xs text-slate-500 mt-1">hors maintenance planifiée</div></td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">≥ 99,0%</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">≥ 99,0%</span></td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3"><b class="font-semibold text-slate-800">Délai de réponse support</b><div class="text-xs text-slate-500 mt-1">questions participants / modifications</div></td>
                       <td class="px-4 py-3 text-right">
-                        <span class="inline-block bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm mb-1.5">≤ 24h ouvrées</span><br>
-                        <span class="inline-block bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">≤ 6h (J-7 → J)</span>
+                        <span class="inline-block bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm mb-1.5 whitespace-nowrap">≤ 24h ouvrées</span><br>
+                        <span class="inline-block bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">≤ 6h (J-7 → J)</span>
                       </td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3"><b class="font-semibold text-slate-800">SMS rappel</b><div class="text-xs text-slate-500 mt-1">avant chaque réunion</div></td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">J-1 (ou J-2) • 100% inscrits</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">J-1 (ou J-2) • 100% inscrits</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -685,14 +816,14 @@
                   <tbody class="divide-y divide-slate-100 text-sm">
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 w-1/2"><b class="font-semibold text-slate-800">Présence régie</b><div class="text-xs text-slate-500 mt-1">ouverture site → fin démontage</div></td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">100%</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">100%</span></td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3"><b class="font-semibold text-slate-800">Incident critique AV</b><div class="text-xs text-slate-500 mt-1">son / vidéo / écrans (pendant plénière)</div></td>
                       <td class="px-4 py-3 text-right">
-                        <span class="inline-block bg-rose-50 border border-rose-200 text-rose-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm mb-1">prise en charge ≤ 2 min</span><br>
-                        <span class="inline-block bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm mb-1">contournement ≤ 5 min</span><br>
-                        <span class="inline-block bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">rétablissement ≤ 10 min</span>
+                        <span class="inline-block bg-rose-50 border border-rose-200 text-rose-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm mb-1 whitespace-nowrap">prise en charge ≤ 2 min</span><br>
+                        <span class="inline-block bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm mb-1 whitespace-nowrap">contournement ≤ 5 min</span><br>
+                        <span class="inline-block bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">rétablissement ≤ 10 min</span>
                       </td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
@@ -715,11 +846,11 @@
                   <tbody class="divide-y divide-slate-100 text-sm">
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3 w-1/2"><b class="font-semibold text-slate-800">Enquête satisfaction</b><div class="text-xs text-slate-500 mt-1">envoi après la tournée</div></td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">J+2</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">J+2</span></td>
                     </tr>
                     <tr class="hover:bg-white transition-colors">
                       <td class="px-4 py-3"><b class="font-semibold text-slate-800">Reporting consolidé</b><div class="text-xs text-slate-500 mt-1">inscriptions, présence, incidents, REX, budget</div></td>
-                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm">J+12</span></td>
+                      <td class="px-4 py-3 text-right"><span class="bg-white border border-slate-200 text-slate-700 font-mono text-xs font-bold px-2 py-1 rounded shadow-sm whitespace-nowrap">J+12</span></td>
                     </tr>
                   </tbody>
                 </table>
